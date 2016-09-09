@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Number Tool</string>
+    <string name="hint">请输入手机号码</string>
+</resources>
