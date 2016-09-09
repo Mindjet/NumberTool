@@ -7,14 +7,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:background="#5ea9bf"
+        android:background="@color/colorPrimary"
         android:gravity="center">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="号码归属地查询"
-            android:textColor="#fff"
+            android:text="@string/head_title"
+            android:textColor="@color/white"
             android:textSize="25sp"
             android:textStyle="bold"/>
 
@@ -22,7 +22,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:background="#69566c73"
+        android:background="#45566c73"
         android:layout_height="3dp">
     </LinearLayout>
 

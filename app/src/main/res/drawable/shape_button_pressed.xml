@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <solid android:color="@color/colorPrimary"/>
+    <corners android:radius="@dimen/ellipse_radius"/>
+    <padding
+        android:bottom="@dimen/ellipse_padding_small"
+        android:left="@dimen/ellipse_padding_xlarge"
+        android:right="@dimen/ellipse_padding_xlarge"
+        android:top="@dimen/ellipse_padding_small"/>
+
+</shape>
