@@ -68,17 +68,17 @@ public class InfoItemDao {
         String[] strings = new String[]{pNum};
         Cursor cursor = db.rawQuery(sql_search, strings);
 
-//        cursor.moveToNext();
+        System.out.println(cursor);
 
-//        System.out.println(cursor.getString(cursor.getColumnIndex("number")));
-//
-//        infoItem.setProvince(cursor.getString(cursor.getColumnIndex("province")));
-//        infoItem.setCity(cursor.getString(cursor.getColumnIndex("city")));
-//        infoItem.setAreacode(cursor.getString(cursor.getColumnIndex("areacode")));
-//        infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
-//        infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
-//        infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
-//
+        cursor.moveToNext();
+
+        infoItem.setProvince(cursor.getString(cursor.getColumnIndex("province")));
+        infoItem.setCity(cursor.getString(cursor.getColumnIndex("city")));
+        infoItem.setAreacode(cursor.getString(cursor.getColumnIndex("areacode")));
+        infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
+        infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
+        infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
+        
         cursor.close();
         db.close();
 
