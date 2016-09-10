@@ -16,6 +16,7 @@
         android:padding="20dp">
 
         <EditText
+            android:id="@+id/et_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -26,13 +27,17 @@
             android:textSize="@dimen/normal_textSize"/>
 
         <Button
+            android:id="@+id/btn_search"
             android:layout_width="wrap_content"
+            android:focusable="true"
             android:layout_height="wrap_content"
             android:layout_marginTop="50dp"
-            android:background="@drawable/selector_button"
+            android:background="@drawable/selector_background_button"
             android:text="@string/search"
-            android:textColor="@color/white"
-            android:textSize="@dimen/normal_textSize"/>
+            android:textColor="@drawable/selector_textcolor_button"
+            android:textSize="@dimen/large_textSize"/>
+
+        <include layout="@layout/widget_detail"/>
 
 
     </LinearLayout>
