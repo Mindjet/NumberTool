@@ -6,12 +6,21 @@ package mindjet.com.numbertool.Bean;
  */
 public class InfoItem {
 
+    private String number = "";
     private String province = "";
     private String city = "";
     private String areacode = "";
     private String zip = "";
     private String company = "";
     private String type = "";
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 
     public String getProvince() {
         return province;
@@ -59,5 +68,11 @@ public class InfoItem {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public String toString() {
+        return "[number=" + number + ", province=" + province + ", city=" + city + ", areacode=" + areacode + ", " +
+                "zip=" + zip + ", company=" + company + ", type=" + type + "]";
     }
 }

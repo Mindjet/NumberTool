@@ -1,7 +1,4 @@
-package mindjet.com.numbertool.Biz;
-
-import android.os.Handler;
-import android.os.Message;
+package mindjet.com.numbertool.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,51 +6,13 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import mindjet.com.numbertool.Bean.InfoItem;
-import mindjet.com.numbertool.Util.DecodeUtil;
-
 /**
  * @author Mindjet
  * @date 2016/9/10
  */
-public class NumberBiz {
+public class HttpUtil {
 
-    private Handler handler;
-    private String pNum = null;
-
-    public NumberBiz(Handler handler) {
-        this.handler = handler;
-    }
-
-
-    public void getData(String pNum){
-
-        this.pNum = pNum;
-
-        new Thread(){
-            @Override
-            public void run() {
-                fetch_send();
-            }
-        }.start();
-
-    }
-
-
-    private void fetch_send() {
-
-        //http://apis.juhe.cn/mobile/get?phone=13429667914&key=您申请的KEY
-        String myUrl = Constants.API_PREFIX + "?" + "phone=" + pNum + "&" + "key=" + Constants.APPKEY;
-        String result = fetchInBackgound(myUrl);
-
-        InfoItem infoItem = DecodeUtil.Json2InfoItem(result);
-        Message message = new Message();
-        message.obj = infoItem;
-        handler.sendMessage(message);
-
-    }
-
-    private String fetchInBackgound(String myUrl) {
+    public static String fetchInBackgound(String myUrl) {
 
         HttpURLConnection conn;
         StringBuilder builder = new StringBuilder("");
@@ -96,6 +55,5 @@ public class NumberBiz {
         return builder.toString();
 
     }
-
 
 }

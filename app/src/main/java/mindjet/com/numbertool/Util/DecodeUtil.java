@@ -12,9 +12,24 @@ import mindjet.com.numbertool.Bean.InfoItem;
 public class DecodeUtil {
 
 
-    public static InfoItem Json2InfoItem(String json) {
+    public static InfoItem Json2InfoItem(String json, String number) {
+
+//    {
+//            "resultcode":"200",
+//            "reason":"Return Successd!",
+//            "result":{
+//                "province":"浙江",
+//                "city":"杭州",
+//                "areacode":"0571",
+//                "zip":"310000",
+//                "company":"中国移动",
+//                "card":"移动动感地带卡"
+//             }
+//    }
 
         InfoItem info = new InfoItem();
+
+        info.setNumber(number);
 
         try {
 
@@ -39,20 +54,5 @@ public class DecodeUtil {
 
         return info;
     }
-
-
-//    {
-//            "resultcode":"200",
-//            "reason":"Return Successd!",
-//            "result":{
-//                "province":"浙江",
-//                "city":"杭州",
-//                "areacode":"0571",
-//                "zip":"310000",
-//                "company":"中国移动",
-//                "card":"移动动感地带卡"
-//             }
-//    }
-
 
 }

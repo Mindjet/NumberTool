@@ -17,13 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import mindjet.com.numbertool.Bean.InfoItem;
-import mindjet.com.numbertool.Biz.NumberBiz;
+import mindjet.com.numbertool.Biz.InfoItemBiz;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private InputMethodManager inputMethodManager;
 
-    private NumberBiz numberBiz;
+    private InfoItemBiz infoItemBiz;
     private MyHandler handler;
 
     private EditText et_input;
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         initUI();
 
         handler = new MyHandler();
-        numberBiz = new NumberBiz(handler);
+        infoItemBiz = new InfoItemBiz(this, "myTable", handler);
 
         inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
 
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             inputMethodManager.hideSoftInputFromWindow(et_input.getWindowToken(),0);
             pb.setVisibility(View.VISIBLE);
 
-            numberBiz.getData(s);
+            infoItemBiz.getData(s);
 
         }
 
