@@ -1,5 +1,6 @@
 package mindjet.com.numbertool;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -9,15 +10,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import mindjet.com.numbertool.Bean.InfoItem;
 import mindjet.com.numbertool.Biz.InfoItemBiz;
+import mindjet.com.numbertool.Util.AnimUtil;
 import mindjet.com.numbertool.View.ClearEditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -95,7 +97,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (s.equals("")) {
 
-            Toast.makeText(this, "号码不能为空", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"请输入手机号码",Toast.LENGTH_SHORT).show();
+
+            //shake the edittext to remind user.
+            AnimUtil.vibrate(et_input,2,4);
 
         } else {
 
@@ -106,6 +111,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             infoItemBiz.getData(s);
 
         }
+
 
     }
 

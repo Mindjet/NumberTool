@@ -3,7 +3,6 @@ package mindjet.com.numbertool.View;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
@@ -43,7 +42,7 @@ public class ClearEditText extends EditText implements TextWatcher, OnFocusChang
         this.setFocusable(true);
         this.setFocusableInTouchMode(true);
         this.clearFocus();
-        this.setInputType(InputType.TYPE_CLASS_PHONE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+
         cross = this.getCompoundDrawables()[2];
 
         //hide the cross image in the first place
@@ -54,17 +53,21 @@ public class ClearEditText extends EditText implements TextWatcher, OnFocusChang
 
     }
 
+    /**
+     * implement the function of the "cross" button.
+     */
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if (event.getAction() == MotionEvent.ACTION_UP){
+        if (event.getAction() == MotionEvent.ACTION_UP) {
 
-            int x = (int)event.getX();
+            int x = (int) event.getX();
             int width = this.getWidth();
 
-            if (width-x<=this.getCompoundPaddingRight()){
+            if (width - x <= this.getCompoundPaddingRight()) {
 
-                if (!TextUtils.isEmpty(this.getText().toString())){
+                if (!TextUtils.isEmpty(this.getText().toString())) {
 
                     this.setText("");
 
@@ -73,7 +76,6 @@ public class ClearEditText extends EditText implements TextWatcher, OnFocusChang
             }
 
         }
-
 
         return super.onTouchEvent(event);
     }
@@ -88,19 +90,20 @@ public class ClearEditText extends EditText implements TextWatcher, OnFocusChang
     @Override
     public void onTextChanged(CharSequence text, int start, int lengthBefore, int lengthAfter) {
 
+        // Before showing the cross, the view must be focused,
+        // or all the drawables will be set null at the very first time.
         if (focused) {
 
             if (TextUtils.isEmpty(text)) {
 
-                System.out.println("the content is null");
                 this.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
 
             } else {
 
-                System.out.println("set image");
                 this.setCompoundDrawablesWithIntrinsicBounds(null, null, cross, null);
 
             }
+
         }
 
 

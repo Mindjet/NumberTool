@@ -68,8 +68,6 @@ public class InfoItemDao {
         String[] strings = new String[]{pNum};
         Cursor cursor = db.rawQuery(sql_search, strings);
 
-        System.out.println(cursor);
-
         cursor.moveToNext();
 
         infoItem.setProvince(cursor.getString(cursor.getColumnIndex("province")));
