@@ -15,15 +15,18 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <EditText
+        <mindjet.com.numbertool.View.ClearEditText
             android:id="@+id/et_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:focusable="true"
             android:layout_marginTop="20dp"
             android:background="@drawable/shape_round_rectangle"
             android:hint="@string/hint"
             android:inputType="phone"
-            android:textColor="@color/black"
+            android:textColor="@color/colorPrimary"
+            android:drawableEnd="@mipmap/cross"
+            android:drawableRight="@mipmap/cross"
             android:textSize="@dimen/normal_textSize"/>
 
         <Button

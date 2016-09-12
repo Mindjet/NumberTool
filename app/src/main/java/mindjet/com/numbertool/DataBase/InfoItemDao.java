@@ -78,7 +78,7 @@ public class InfoItemDao {
         infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
         infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
         infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
-        
+
         cursor.close();
         db.close();
 

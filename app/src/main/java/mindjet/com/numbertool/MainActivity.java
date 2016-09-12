@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import mindjet.com.numbertool.Bean.InfoItem;
 import mindjet.com.numbertool.Biz.InfoItemBiz;
+import mindjet.com.numbertool.View.ClearEditText;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private InfoItemBiz infoItemBiz;
     private MyHandler handler;
 
-    private EditText et_input;
+    private ClearEditText et_input;
     private Button btn_search;
     private static ProgressBar pb;
     private static TextView tv_province, tv_city, tv_areacode, tv_zip, tv_company, tv_type;
@@ -49,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initUI() {
 
-        et_input = (EditText) findViewById(R.id.et_input);
+        et_input = (ClearEditText) findViewById(R.id.et_input);
         btn_search = (Button) findViewById(R.id.btn_search);
         pb = (ProgressBar) findViewById(R.id.progressBar);
         tv_province = (TextView) findViewById(R.id.tv_province);
