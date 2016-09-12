@@ -7,11 +7,10 @@ import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
-
-import mindjet.com.numbertool.R;
 
 /**
  * @author Mindjet
@@ -44,7 +43,7 @@ public class ClearEditText extends EditText implements TextWatcher, OnFocusChang
         this.setFocusable(true);
         this.setFocusableInTouchMode(true);
         this.clearFocus();
-        this.setInputType(InputType.TYPE_CLASS_PHONE|InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
+        this.setInputType(InputType.TYPE_CLASS_PHONE | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         cross = this.getCompoundDrawables()[2];
 
         //hide the cross image in the first place
@@ -55,6 +54,29 @@ public class ClearEditText extends EditText implements TextWatcher, OnFocusChang
 
     }
 
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        if (event.getAction() == MotionEvent.ACTION_UP){
+
+            int x = (int)event.getX();
+            int width = this.getWidth();
+
+            if (width-x<=this.getCompoundPaddingRight()){
+
+                if (!TextUtils.isEmpty(this.getText().toString())){
+
+                    this.setText("");
+
+                }
+
+            }
+
+        }
+
+
+        return super.onTouchEvent(event);
+    }
 
     @Override
     public void onFocusChange(View view, boolean focused) {
