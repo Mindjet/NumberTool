@@ -1,6 +1,8 @@
 package mindjet.com.numbertool;
 
-import android.animation.ObjectAnimator;
+import android.annotation.SuppressLint;
+import android.annotation.TargetApi;
+import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
@@ -10,35 +12,37 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.Animation;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
+
+import com.idescout.sql.SqlScoutServer;
 
 import mindjet.com.numbertool.Bean.InfoItem;
 import mindjet.com.numbertool.Biz.InfoItemBiz;
 import mindjet.com.numbertool.Util.AnimUtil;
 import mindjet.com.numbertool.View.ClearEditText;
+import mindjet.com.numbertool.View.InfoItemDialog;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private InputMethodManager inputMethodManager;
+    private FragmentManager fragmentManager;
 
     private InfoItemBiz infoItemBiz;
     private MyHandler handler;
 
     private ClearEditText et_input;
     private Button btn_search;
-    private static ProgressBar pb;
-    private static TextView tv_province, tv_city, tv_areacode, tv_zip, tv_company, tv_type;
+    private static InfoItemDialog dialog;
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        SqlScoutServer.create(this,getPackageName());
 
         //immersiveMode();
         initUI();
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         infoItemBiz = new InfoItemBiz(this, "myTable", handler);
 
         inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
+        fragmentManager = getFragmentManager();
 
     }
 
@@ -54,16 +59,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         et_input = (ClearEditText) findViewById(R.id.et_input);
         btn_search = (Button) findViewById(R.id.btn_search);
-        pb = (ProgressBar) findViewById(R.id.progressBar);
-        tv_province = (TextView) findViewById(R.id.tv_province);
-        tv_city = (TextView) findViewById(R.id.tv_city);
-        tv_areacode = (TextView) findViewById(R.id.tv_areacode);
-        tv_zip = (TextView) findViewById(R.id.tv_zip);
-        tv_company = (TextView) findViewById(R.id.tv_company);
-        tv_type = (TextView) findViewById(R.id.tv_type);
+        dialog = new InfoItemDialog();
 
         btn_search.setOnClickListener(this);
-        pb.setVisibility(View.GONE);
 
     }
 
@@ -93,21 +91,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     //triggered when the search button is clicked
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     private void event_btn_search(String s) {
 
         if (s.equals("")) {
 
-            Toast.makeText(this,"请输入手机号码",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "请输入手机号码", Toast.LENGTH_SHORT).show();
 
             //shake the edittext to remind user.
-            AnimUtil.vibrate(et_input,2,4);
+            AnimUtil.vibrate(et_input, 2, 4);
 
         } else {
 
             //hide the keyboard
-            inputMethodManager.hideSoftInputFromWindow(et_input.getWindowToken(),0);
-            pb.setVisibility(View.VISIBLE);
+            inputMethodManager.hideSoftInputFromWindow(et_input.getWindowToken(), 0);
 
+            //show the dialog of details
+            dialog.show(fragmentManager, "SHOW_DIALOG");
+
+            //start fetching data from network or database
             infoItemBiz.getData(s);
 
         }
@@ -115,29 +117,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
     static class MyHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
 
-            setText((InfoItem) msg.obj);
+            dialog.updateTextViews((InfoItem) msg.obj);
 
         }
 
-
-        private void setText(InfoItem info){
-
-            pb.setVisibility(View.GONE);
-
-            tv_province.setText(info.getProvince());
-            tv_city.setText(info.getCity());
-            tv_areacode.setText(info.getAreacode());
-            tv_zip.setText(info.getZip());
-            tv_company.setText(info.getCompany());
-            tv_type.setText(info.getType());
-
-        }
 
     }
 

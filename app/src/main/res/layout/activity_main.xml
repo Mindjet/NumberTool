@@ -42,9 +42,6 @@
             android:textColor="@drawable/selector_textcolor_button"
             android:textSize="@dimen/large_textSize"/>
 
-        <include layout="@layout/widget_detail"/>
-
-
     </LinearLayout>
 
 </LinearLayout>
