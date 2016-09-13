@@ -4,6 +4,8 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import mindjet.com.numbertool.Biz.Constants;
+
 /**
  * @author Mindjet
  * @date 2016/9/10
@@ -13,7 +15,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private String tableName;
 
     public DBHelper(Context context, String tableName) {
-        super(context, "MYDATABASE", null, 1);
+        super(context, Constants.DATABASE_NAME, null, 1);
         this.tableName = tableName;
     }
 

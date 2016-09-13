@@ -1,6 +1,5 @@
 package mindjet.com.numbertool;
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -14,13 +13,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
-import android.widget.Toast;
-
-import com.idescout.sql.SqlScoutServer;
 
 import mindjet.com.numbertool.Bean.InfoItem;
+import mindjet.com.numbertool.Biz.Constants;
 import mindjet.com.numbertool.Biz.InfoItemBiz;
+import mindjet.com.numbertool.DataBase.InfoItemDao;
 import mindjet.com.numbertool.Util.AnimUtil;
+import mindjet.com.numbertool.Util.NetworkUtil;
+import mindjet.com.numbertool.Util.ToastUtil;
 import mindjet.com.numbertool.View.ClearEditText;
 import mindjet.com.numbertool.View.InfoItemDialog;
 
@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private FragmentManager fragmentManager;
 
     private InfoItemBiz infoItemBiz;
+    private InfoItemDao infoItemDao;
     private MyHandler handler;
 
     private ClearEditText et_input;
@@ -42,13 +43,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SqlScoutServer.create(this,getPackageName());
-
         //immersiveMode();
         initUI();
 
         handler = new MyHandler();
-        infoItemBiz = new InfoItemBiz(this, "myTable", handler);
+        infoItemBiz = new InfoItemBiz(this, Constants.TABLE_NAME, handler);
+        infoItemDao = new InfoItemDao(this, Constants.TABLE_NAME);
 
         inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         fragmentManager = getFragmentManager();
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (s.equals("")) {
 
-            Toast.makeText(this, "请输入手机号码", Toast.LENGTH_SHORT).show();
+            ToastUtil.show(this, "请输入手机号码", 0);
 
             //shake the edittext to remind user.
             AnimUtil.vibrate(et_input, 2, 4);
@@ -106,11 +106,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //hide the keyboard
             inputMethodManager.hideSoftInputFromWindow(et_input.getWindowToken(), 0);
 
-            //show the dialog of details
-            dialog.show(fragmentManager, "SHOW_DIALOG");
+            //if network is available or there is corresponding data in database.
+            if (NetworkUtil.isNetworkConnected(this) || infoItemDao.isDuplicate(s)) {
 
-            //start fetching data from network or database
-            infoItemBiz.getData(s);
+                //show the dialog of details
+                dialog.show(fragmentManager, "SHOW_DIALOG");
+
+                //start fetching data from network or database
+                infoItemBiz.getData(s);
+
+            } else {
+
+                ToastUtil.show(this, "请打开Wi-Fi或者蜂窝数据", 0);
+
+            }
 
         }
 

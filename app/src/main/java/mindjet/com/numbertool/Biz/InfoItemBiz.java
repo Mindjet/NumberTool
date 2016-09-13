@@ -14,6 +14,7 @@ import mindjet.com.numbertool.Bean.InfoItem;
 import mindjet.com.numbertool.DataBase.InfoItemDao;
 import mindjet.com.numbertool.Util.DecodeUtil;
 import mindjet.com.numbertool.Util.HttpUtil;
+import mindjet.com.numbertool.Util.NetworkUtil;
 
 /**
  * @author Mindjet
