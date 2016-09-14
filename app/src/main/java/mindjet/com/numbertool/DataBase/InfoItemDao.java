@@ -3,6 +3,10 @@ package mindjet.com.numbertool.DataBase;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import mindjet.com.numbertool.Bean.InfoItem;
 
@@ -100,6 +104,35 @@ public class InfoItemDao {
         db.close();
 
         return isDuplicate;
+
+    }
+
+    public List<InfoItem> getAll(){
+
+        List<InfoItem> infoItemList = new ArrayList<>();
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String sql_all = "select * from "+tableName;
+        Cursor cursor = db.rawQuery(sql_all, null);
+
+        while (cursor.moveToNext()){
+
+            InfoItem infoItem = new InfoItem();
+            infoItem.setNumber(cursor.getString(cursor.getColumnIndex("number")));
+            infoItem.setProvince(cursor.getString(cursor.getColumnIndex("province")));
+            infoItem.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            infoItem.setAreacode(cursor.getString(cursor.getColumnIndex("areacode")));
+            infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
+            infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
+            infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
+            infoItemList.add(infoItem);
+
+        }
+
+        cursor.close();
+        db.close();
+
+        return infoItemList;
 
     }
 

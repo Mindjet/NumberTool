@@ -10,16 +10,16 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <mindjet.com.numbertool.View.ClearEditText
             android:id="@+id/et_input"
-            android:layout_marginLeft="@dimen/detail_block_padding"
-            android:layout_marginRight="@dimen/detail_block_padding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/detail_block_padding"
+            android:layout_marginRight="@dimen/detail_block_padding"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_round_rectangle"
             android:drawableEnd="@mipmap/cross"
@@ -43,5 +43,21 @@
             android:textSize="@dimen/large_textSize"/>
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ellipse_padding_large"
+        android:padding="@dimen/ellipse_padding_xsmall"
+        android:text="@string/history"
+        android:textColor="@color/colorPrimary"
+        android:textSize="@dimen/large_textSize"/>
+
+    <ListView
+        android:id="@+id/lv_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/white">
+    </ListView>
 
 </LinearLayout>

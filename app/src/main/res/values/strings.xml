@@ -11,5 +11,7 @@
     <string name="item_company">运营商 ：%1$s</string>
     <string name="item_type">卡类型 ：%1$s</string>
     <string name="detail_loading">正在获取</string>
+    <string name="text4test">shishishis</string>
+    <string name="history">查 询 历 史</string>
 
 </resources>

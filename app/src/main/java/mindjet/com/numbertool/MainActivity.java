@@ -13,7 +13,9 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ListView;
 
+import mindjet.com.numbertool.Adapter.HistoryAdapter;
 import mindjet.com.numbertool.Bean.InfoItem;
 import mindjet.com.numbertool.Biz.Constants;
 import mindjet.com.numbertool.Biz.InfoItemBiz;
@@ -33,9 +35,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private InfoItemBiz infoItemBiz;
     private InfoItemDao infoItemDao;
     private MyHandler handler;
+    private static HistoryAdapter historyAdapter;
 
     private ClearEditText et_input;
     private Button btn_search;
+    private ListView lv_history;
     private static InfoItemDialog dialog;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -45,14 +49,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         //immersiveMode();
-        initUI();
 
         handler = new MyHandler();
         infoItemBiz = new InfoItemBiz(this, Constants.TABLE_NAME, handler);
         infoItemDao = new InfoItemDao(this, Constants.TABLE_NAME);
+        historyAdapter = new HistoryAdapter(this,infoItemDao);
 
         inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         fragmentManager = getFragmentManager();
+
+        initUI();
 
     }
 
@@ -60,9 +66,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         et_input = (ClearEditText) findViewById(R.id.et_input);
         btn_search = (Button) findViewById(R.id.btn_search);
+        lv_history = (ListView) findViewById(R.id.lv_history);
         dialog = new InfoItemDialog();
 
         btn_search.setOnClickListener(this);
+
+        lv_history.setAdapter(historyAdapter);
+        historyAdapter.addFromDB();
+
 
     }
 
@@ -137,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         public void handleMessage(Message msg) {
 
             dialog.updateTextViews((InfoItem) msg.obj);
+            historyAdapter.addInfoItem((InfoItem) msg.obj);
 
         }
 

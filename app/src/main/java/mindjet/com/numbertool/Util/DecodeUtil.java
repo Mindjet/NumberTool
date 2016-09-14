@@ -14,6 +14,8 @@ public class DecodeUtil {
 
     public static InfoItem Json2InfoItem(String json, String number) {
 
+//example
+
 //    {
 //            "resultcode":"200",
 //            "reason":"Return Successd!",
@@ -47,7 +49,7 @@ public class DecodeUtil {
                 info.setType(detail.getString("card"));
 
             }
-            
+
         } catch (JSONException e) {
             e.printStackTrace();
         }

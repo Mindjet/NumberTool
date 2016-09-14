@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/ellipse_padding_small"
+        android:paddingEnd="@dimen/ellipse_padding_large"
+        android:paddingLeft="0dp"
+        android:paddingRight="@dimen/ellipse_padding_large"
+        android:paddingStart="0dp"
+        android:paddingTop="@dimen/ellipse_padding_small">
+
+        <ImageView
+            android:layout_width="5dp"
+            android:layout_height="20dp"
+            android:layout_centerVertical="true"
+            android:background="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/tv_history_item_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/ellipse_padding_large"
+            android:layout_marginStart="@dimen/ellipse_padding_large"
+            android:text="@string/text4test"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/middle_textSize"/>
+
+        <TextView
+            android:id="@+id/tv_history_item_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/ellipse_padding_small"
+            android:layout_marginStart="@dimen/ellipse_padding_small"
+            android:layout_toEndOf="@+id/tv_history_item_number"
+            android:layout_toRightOf="@+id/tv_history_item_number"
+            android:text="@string/text4test"
+            android:textSize="@dimen/middle_textSize"/>
+
+        <ImageView
+            android:id="@+id/iv_history_item_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/delete"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

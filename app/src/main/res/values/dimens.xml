@@ -11,9 +11,11 @@
     <dimen name="ellipse_padding_xlarge">40dp</dimen>
     <dimen name="ellipse_padding_large">20dp</dimen>
     <dimen name="ellipse_padding_small">10dp</dimen>
+    <dimen name="ellipse_padding_xsmall">5dp</dimen>
 
 
     <dimen name="normal_textSize">15sp</dimen>
+    <dimen name="middle_textSize">17sp</dimen>
     <dimen name="large_textSize">20sp</dimen>
     <dimen name="line_spacing">20dp</dimen>
     <dimen name="detail_block_padding">30dp</dimen>
