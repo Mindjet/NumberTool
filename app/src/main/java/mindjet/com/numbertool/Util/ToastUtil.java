@@ -13,12 +13,11 @@ public class ToastUtil {
 
     public static void show(Context context, String content, int length) {
 
-
-        if (mToast==null){
+        if (mToast == null) {
 
             mToast = Toast.makeText(context, content, Toast.LENGTH_SHORT);
 
-        }else{
+        } else {
 
             mToast.setText(content);
             mToast.setDuration(Toast.LENGTH_SHORT);
@@ -26,7 +25,6 @@ public class ToastUtil {
         }
 
         mToast.show();
-
 
     }
 

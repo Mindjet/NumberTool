@@ -20,6 +20,7 @@ import mindjet.com.numbertool.Biz.InfoItemBiz;
 import mindjet.com.numbertool.DataBase.InfoItemDao;
 import mindjet.com.numbertool.Util.AnimUtil;
 import mindjet.com.numbertool.Util.NetworkUtil;
+import mindjet.com.numbertool.Util.RegUtil;
 import mindjet.com.numbertool.Util.ToastUtil;
 import mindjet.com.numbertool.View.ClearEditText;
 import mindjet.com.numbertool.View.InfoItemDialog;
@@ -100,6 +101,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             //shake the edittext to remind user.
             AnimUtil.vibrate(et_input, 2, 4);
+
+        } else if (!RegUtil.isPhoneNumber(s)){
+
+            ToastUtil.show(this, "错误的手机号码格式", 0);
 
         } else {
 

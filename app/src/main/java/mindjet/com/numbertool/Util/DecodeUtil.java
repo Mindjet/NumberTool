@@ -47,7 +47,7 @@ public class DecodeUtil {
                 info.setType(detail.getString("card"));
 
             }
-
+            
         } catch (JSONException e) {
             e.printStackTrace();
         }
