@@ -3,6 +3,11 @@ package mindjet.com.numbertool.Util;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+import java.util.TimeZone;
+
 import mindjet.com.numbertool.Bean.InfoItem;
 
 /**
@@ -29,6 +34,7 @@ public class DecodeUtil {
 //             }
 //    }
 
+
         InfoItem info = new InfoItem();
 
         info.setNumber(number);
@@ -40,6 +46,10 @@ public class DecodeUtil {
 
             if (resultcode.equals("200")) {
 
+                SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd hh:mm");
+                Date date = new Date(System.currentTimeMillis());
+                String mDate = format.format(date);
+
                 JSONObject detail = object.getJSONObject("result");
                 info.setProvince(detail.getString("province"));
                 info.setCity(detail.getString("city"));
@@ -47,6 +57,7 @@ public class DecodeUtil {
                 info.setZip(detail.getString("zip"));
                 info.setCompany(detail.getString("company"));
                 info.setType(detail.getString("card"));
+                info.setDate(mDate);
 
             }
 

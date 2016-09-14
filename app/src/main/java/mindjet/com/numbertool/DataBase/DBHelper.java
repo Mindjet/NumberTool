@@ -24,7 +24,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         String sql_create_table = "create table if not exists " + tableName + " (_id integer primary key " +
                 "autoincrement, number text not null, province text not null, city text not null, areacode text not " +
-                "null, zip text not null, company text not null, type text not null);";
+                "null, zip text not null, company text not null, type text not null, date text not null);";
 
         sqLiteDatabase.execSQL(sql_create_table);
 

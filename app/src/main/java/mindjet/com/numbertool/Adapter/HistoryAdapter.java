@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -54,8 +55,12 @@ public class HistoryAdapter extends BaseAdapter {
         if (view == null) {
 
             holder = new ViewHolder();
+
             view = inflater.inflate(R.layout.widget_history_item, viewGroup, false);
             holder.number = (TextView) view.findViewById(R.id.tv_history_item_number);
+            holder.date = (TextView) view.findViewById(R.id.tv_history_item_time);
+            holder.delete = (ImageView) view.findViewById(R.id.iv_history_item_delete);
+//            holder.listener = new DeleteListener(this, infoItemList.get(i).getNumber(), infoItemDao);
 
             view.setTag(holder);
 
@@ -66,6 +71,8 @@ public class HistoryAdapter extends BaseAdapter {
         }
 
         holder.number.setText(infoItemList.get(i).getNumber());
+        holder.date.setText(infoItemList.get(i).getDate());
+//        holder.delete.setOnClickListener(holder.listener);
 
         return view;
     }
@@ -84,10 +91,24 @@ public class HistoryAdapter extends BaseAdapter {
 
     }
 
+    public void delInfoItem(InfoItem infoItem) {
+
+        System.out.println(infoItemList.remove(infoItem));
+        notifyDataSetChanged();
+
+    }
+
+    public List<InfoItem> getInfoItemList(){
+        return this.infoItemList;
+    }
+
 
     class ViewHolder {
 
         public TextView number;
+        public TextView date;
+        public ImageView delete;
+//        public DeleteListener listener;
 
     }
 

@@ -40,7 +40,7 @@
             android:layout_toEndOf="@+id/tv_history_item_number"
             android:layout_toRightOf="@+id/tv_history_item_number"
             android:text="@string/text4test"
-            android:textSize="@dimen/middle_textSize"/>
+            android:textSize="@dimen/normal_textSize"/>
 
         <ImageView
             android:id="@+id/iv_history_item_delete"

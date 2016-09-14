@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -27,7 +28,7 @@ import mindjet.com.numbertool.Util.ToastUtil;
 import mindjet.com.numbertool.View.ClearEditText;
 import mindjet.com.numbertool.View.InfoItemDialog;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
 
     private InputMethodManager inputMethodManager;
     private FragmentManager fragmentManager;
@@ -51,9 +52,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //immersiveMode();
 
         handler = new MyHandler();
-        infoItemBiz = new InfoItemBiz(this, Constants.TABLE_NAME, handler);
+
         infoItemDao = new InfoItemDao(this, Constants.TABLE_NAME);
-        historyAdapter = new HistoryAdapter(this,infoItemDao);
+        historyAdapter = new HistoryAdapter(this, infoItemDao);
+        infoItemBiz = new InfoItemBiz(this, Constants.TABLE_NAME, handler, historyAdapter);
 
         inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         fragmentManager = getFragmentManager();
@@ -72,8 +74,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn_search.setOnClickListener(this);
 
         lv_history.setAdapter(historyAdapter);
-        historyAdapter.addFromDB();
-
+        lv_history.setOnItemClickListener(this);
+        historyAdapter.addFromDB(); //initialize the data for adapter.
 
     }
 
@@ -113,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             //shake the edittext to remind user.
             AnimUtil.vibrate(et_input, 2, 4);
 
-        } else if (!RegUtil.isPhoneNumber(s)){
+        } else if (!RegUtil.isPhoneNumber(s)) {
 
             ToastUtil.show(this, "错误的手机号码格式", 0);
 
@@ -142,16 +144,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    @TargetApi(Build.VERSION_CODES.HONEYCOMB)
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+        dialog.show(fragmentManager,"SHOW_DIALOG_HISTORY");
+        InfoItem infoItem = historyAdapter.getInfoItemList().get(position);
+
+        //updating the text must be executed in main thread
+        Message message = new Message();
+        message.what = 1;
+        message.obj = infoItem;
+        handler.sendMessage(message);
+
+
+    }
+
     static class MyHandler extends Handler {
 
         @Override
         public void handleMessage(Message msg) {
 
             dialog.updateTextViews((InfoItem) msg.obj);
-            historyAdapter.addInfoItem((InfoItem) msg.obj);
+
+            //If the data is not from database, it's supposed to be added to the listview.
+            if (msg.what==0) {
+                historyAdapter.addInfoItem((InfoItem) msg.obj);
+            }
 
         }
-
 
     }
 

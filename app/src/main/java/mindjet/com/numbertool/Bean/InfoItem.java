@@ -1,5 +1,10 @@
 package mindjet.com.numbertool.Bean;
 
+import android.annotation.TargetApi;
+import android.os.Build;
+
+import java.util.Objects;
+
 /**
  * @author Mindjet
  * @date 2016/9/10
@@ -13,6 +18,7 @@ public class InfoItem {
     private String zip = "";
     private String company = "";
     private String type = "";
+    private String date = "";
 
     public String getNumber() {
         return number;
@@ -70,9 +76,23 @@ public class InfoItem {
         this.type = type;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    public boolean equals(Object obj) {
+        return Objects.equals(this.getNumber(), ((InfoItem) obj).getNumber());
+    }
+
     @Override
     public String toString() {
         return "[number=" + number + ", province=" + province + ", city=" + city + ", areacode=" + areacode + ", " +
-                "zip=" + zip + ", company=" + company + ", type=" + type + "]";
+                "zip=" + zip + ", company=" + company + ", type=" + type + ", date=" + date + "]";
     }
 }

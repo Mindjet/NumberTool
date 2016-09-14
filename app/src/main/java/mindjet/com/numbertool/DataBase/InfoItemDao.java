@@ -3,7 +3,6 @@ package mindjet.com.numbertool.DataBase;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,11 +29,12 @@ public class InfoItemDao {
     public void insert(InfoItem info) {
 
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String sql_add = "insert into " + tableName + "(number, province, city, areacode, zip, company, type)" + " " +
-                "values(?, ?, ?, ?, ?, ?, ?)";
+        String sql_add = "insert into " + tableName + "(number, province, city, areacode, zip, company, type, date)"
+                + " " +
+                "values(?, ?, ?, ?, ?, ?, ?, ?)";
 
         Object[] objects = new Object[]{info.getNumber(), info.getProvince(), info.getCity(), info.getAreacode(),
-                info.getZip(), info.getCompany(), info.getType()};
+                info.getZip(), info.getCompany(), info.getType(), info.getDate()};
 
         db.execSQL(sql_add, objects);
         db.close();
@@ -74,12 +74,14 @@ public class InfoItemDao {
 
         cursor.moveToNext();
 
+        infoItem.setNumber(cursor.getString(cursor.getColumnIndex("number")));
         infoItem.setProvince(cursor.getString(cursor.getColumnIndex("province")));
         infoItem.setCity(cursor.getString(cursor.getColumnIndex("city")));
         infoItem.setAreacode(cursor.getString(cursor.getColumnIndex("areacode")));
         infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
         infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
         infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
+        infoItem.setDate(cursor.getString(cursor.getColumnIndex("date")));
 
         cursor.close();
         db.close();
@@ -107,15 +109,15 @@ public class InfoItemDao {
 
     }
 
-    public List<InfoItem> getAll(){
+    public List<InfoItem> getAll() {
 
         List<InfoItem> infoItemList = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
-        String sql_all = "select * from "+tableName;
+        String sql_all = "select * from " + tableName;
         Cursor cursor = db.rawQuery(sql_all, null);
 
-        while (cursor.moveToNext()){
+        while (cursor.moveToNext()) {
 
             InfoItem infoItem = new InfoItem();
             infoItem.setNumber(cursor.getString(cursor.getColumnIndex("number")));
@@ -125,6 +127,7 @@ public class InfoItemDao {
             infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
             infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
             infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
+            infoItem.setDate(cursor.getString(cursor.getColumnIndex("date")));
             infoItemList.add(infoItem);
 
         }
@@ -133,6 +136,23 @@ public class InfoItemDao {
         db.close();
 
         return infoItemList;
+
+    }
+
+    public int getIndex(String pNum){
+
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+        String sql_index = "select * from "+tableName+" where number=?";
+        String[] strings = new String[]{pNum};
+
+        Cursor cursor = db.rawQuery(sql_index, strings);
+        cursor.moveToNext();
+
+        int index = cursor.getInt(cursor.getColumnIndex("_id"));
+        cursor.close();
+        db.close();
+
+        return index;
 
     }
 
