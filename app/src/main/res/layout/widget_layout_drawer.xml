@@ -14,13 +14,14 @@
     </FrameLayout>
 
 
-    <ListView
-        android:id="@+id/lv_sildemenu"
-        android:layout_width="230dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="@color/gray"
-        android:paddingTop="@dimen/ellipse_padding_small">
-    </ListView>
+        <ListView
+            android:id="@+id/lv_slidemenu"
+            android:layout_width="220dp"
+            android:layout_gravity="start"
+            android:background="@color/gray"
+            android:layout_height="match_parent"
+            android:paddingTop="@dimen/ellipse_padding_small">
+        </ListView>
+
 
 </android.support.v4.widget.DrawerLayout>

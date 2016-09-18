@@ -65,23 +65,29 @@ public class InfoItemDao {
 
     public InfoItem search(String pNum) {
 
-        InfoItem infoItem = new InfoItem();
+        InfoItem infoItem = null;
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
         String sql_search = "select * from " + tableName + " where number=?";
         String[] strings = new String[]{pNum};
         Cursor cursor = db.rawQuery(sql_search, strings);
 
-        cursor.moveToNext();
+        if (cursor.getCount() != 0) {
 
-        infoItem.setNumber(cursor.getString(cursor.getColumnIndex("number")));
-        infoItem.setProvince(cursor.getString(cursor.getColumnIndex("province")));
-        infoItem.setCity(cursor.getString(cursor.getColumnIndex("city")));
-        infoItem.setAreacode(cursor.getString(cursor.getColumnIndex("areacode")));
-        infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
-        infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
-        infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
-        infoItem.setDate(cursor.getString(cursor.getColumnIndex("date")));
+            //only if there is data matches the selection, the infoItem can be non-null.
+            infoItem = new InfoItem();
+            cursor.moveToNext();
+
+            infoItem.setNumber(cursor.getString(cursor.getColumnIndex("number")));
+            infoItem.setProvince(cursor.getString(cursor.getColumnIndex("province")));
+            infoItem.setCity(cursor.getString(cursor.getColumnIndex("city")));
+            infoItem.setAreacode(cursor.getString(cursor.getColumnIndex("areacode")));
+            infoItem.setZip(cursor.getString(cursor.getColumnIndex("zip")));
+            infoItem.setCompany(cursor.getString(cursor.getColumnIndex("company")));
+            infoItem.setType(cursor.getString(cursor.getColumnIndex("type")));
+            infoItem.setDate(cursor.getString(cursor.getColumnIndex("date")));
+
+        }
 
         cursor.close();
         db.close();

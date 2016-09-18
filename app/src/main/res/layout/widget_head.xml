@@ -13,7 +13,7 @@
         <ImageView
             android:id="@+id/iv_toggle_drawer"
             android:layout_width="wrap_content"
-            android:src="@mipmap/delete"
+            android:src="@mipmap/drawer"
             android:paddingRight="@dimen/ellipse_padding_large"
             android:layout_centerVertical="true"
             android:layout_height="wrap_content"/>

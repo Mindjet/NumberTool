@@ -8,23 +8,23 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="@dimen/ellipse_padding_large"
+        android:paddingLeft="@dimen/ellipse_padding_small"
         android:paddingRight="@dimen/ellipse_padding_large">
 
         <ImageView
-            android:id="@+id/iv_sildemenu_item_image"
+            android:id="@+id/iv_slidemenu_item_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"/>
 
         <TextView
-            android:id="@+id/tv_sildemenu_item_text"
+            android:id="@+id/tv_slidemenu_item_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/ellipse_padding_small"
-            android:layout_toEndOf="@id/iv_sildemenu_item_image"
-            android:layout_toRightOf="@id/iv_sildemenu_item_image"
+            android:layout_toEndOf="@id/iv_slidemenu_item_image"
+            android:layout_toRightOf="@id/iv_slidemenu_item_image"
             android:text="@string/text4test"
             android:textColor="@color/white"
             android:textSize="@dimen/middle_textSize"/>

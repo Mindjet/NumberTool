@@ -91,9 +91,23 @@ public class HistoryAdapter extends BaseAdapter {
 
     }
 
-    public void delInfoItem(InfoItem infoItem) {
+    public void delInfoItem(String pNum) {
 
-        infoItemList.remove(infoItem);
+        for (InfoItem info :
+                infoItemList) {
+            if (info.getNumber().equals(pNum)){
+                infoItemList.remove(info);
+                break;
+            }
+        }
+
+        notifyDataSetChanged();
+
+    }
+
+    public void delInfoItemList(){
+
+        infoItemList.clear();
         notifyDataSetChanged();
 
     }

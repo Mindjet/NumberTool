@@ -61,10 +61,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         handler = new MyHandler();
 
-        slideMenuAdapter = new SlideMenuAdapter(this);
-
         infoItemDao = new InfoItemDao(this, Constants.TABLE_NAME);
         historyAdapter = new HistoryAdapter(this, infoItemDao);
+        slideMenuAdapter = new SlideMenuAdapter(this);
         infoItemBiz = new InfoItemBiz(this, Constants.TABLE_NAME, handler);
 
         inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -76,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initUI() {
 
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        lv_slidemenu = (ListView) findViewById(R.id.lv_sildemenu);
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);     //drawer layout
+        lv_slidemenu = (ListView) findViewById(R.id.lv_slidemenu);
         iv_toggle_drawer = (ImageView) findViewById(R.id.iv_toggle_drawer);
         et_input = (ClearEditText) findViewById(R.id.et_input);
         btn_search = (Button) findViewById(R.id.btn_search);
@@ -89,9 +88,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         lv_history.setAdapter(historyAdapter);
         lv_history.setOnItemClickListener(this);
-        historyAdapter.addFromDB(); //initialize the data for adapter.
+        historyAdapter.addFromDB();     //initialize the data for adapter at the first time.
 
         lv_slidemenu.setAdapter(slideMenuAdapter);
+        lv_slidemenu.setOnItemClickListener(this);
 
     }
 
@@ -127,7 +127,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void event_iv_toggle_drawer() {
 
         if (!isDrawerOpen) {
+
             drawerLayout.openDrawer(lv_slidemenu);
+
+            //hide the keyboard
+            inputMethodManager.hideSoftInputFromWindow(lv_slidemenu.getWindowToken(), 0);
+
             isDrawerOpen = true;
         } else {
             drawerLayout.closeDrawer(lv_slidemenu);
@@ -179,14 +184,45 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-        dialog.show(fragmentManager, "SHOW_DIALOG_HISTORY");
-        InfoItem infoItem = historyAdapter.getInfoItemList().get(position);
+        int lv_id = adapterView.getId();
 
-        //updating the text must be executed in main thread
-        Message message = new Message();
-        message.what = 1;
-        message.obj = infoItem;
-        handler.sendMessage(message);
+        if (lv_id == R.id.lv_history) {
+
+            dialog.show(fragmentManager, "SHOW_DIALOG_HISTORY");
+            InfoItem infoItem = historyAdapter.getInfoItemList().get(position);
+
+            //updating the text must be executed in main thread
+            Message message = new Message();
+            message.what = Constants.MSG_FROM_DB;
+            message.obj = infoItem;
+            handler.sendMessage(message);
+
+        } else if (lv_id == R.id.lv_slidemenu) {
+
+            switch (position) {
+
+                case 0:
+                    //clear database
+                    ToastUtil.show(this, "数据库已清空", 0);
+
+                    infoItemDao.clear();
+                    Message message = Message.obtain();
+                    message.what = Constants.MSG_CLEAR_DB;
+                    handler.sendMessage(message);
+
+                    break;
+
+                case 1:
+                    //show version information
+                    break;
+
+                case 2:
+                    //show information about me
+                    break;
+
+            }
+
+        }
 
 
     }
@@ -196,11 +232,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         @Override
         public void handleMessage(Message msg) {
 
-            dialog.updateTextViews((InfoItem) msg.obj);
+            // if the message is about the dialog and about the history listview
+            if (msg.what == Constants.MSG_FROM_DB || msg.what == Constants.MSG_FROM_NETWORK) {
 
-            //If the data is not from database, it's supposed to be added to the listview.
-            if (msg.what == 0) {
-                historyAdapter.addInfoItem((InfoItem) msg.obj);
+                dialog.updateTextViews((InfoItem) msg.obj);
+
+                //If the data is not from database, it's supposed to be added to the listview.
+                if (msg.what == Constants.MSG_FROM_NETWORK) {
+                    historyAdapter.addInfoItem((InfoItem) msg.obj);
+                }
+
+            // if the message is about clearing the database
+            } else if (msg.what == Constants.MSG_CLEAR_DB) {
+
+                historyAdapter.delInfoItemList();
+
             }
 
         }

@@ -44,20 +44,20 @@ public class InfoItemBiz {
     private void performRequest() {
 
         String myUrl = Constants.API_PREFIX + "?" + "phone=" + pNum + "&" + "key=" + Constants.APPKEY;
-        int fromDB;
+        int msg_code;
 
         InfoItem infoItem;
 
         if (dao.isDuplicate(pNum)) {         //the number exists in the database.
 
             infoItem = dao.search(pNum);
-            fromDB = 1;
+            msg_code = Constants.MSG_FROM_DB;
 
         } else {                             //the number does not exist in the database.
 
             String result = HttpUtil.fetchInBackground(myUrl);
             infoItem = DecodeUtil.Json2InfoItem(result, pNum);
-            fromDB = 0;
+            msg_code = Constants.MSG_FROM_NETWORK;
 
             //add item to the database
             dao.insert(infoItem);
@@ -67,7 +67,7 @@ public class InfoItemBiz {
         }
 
         Message message = new Message();
-        message.what = fromDB;
+        message.what = msg_code;
         message.obj = infoItem;
         handler.sendMessage(message);
 
