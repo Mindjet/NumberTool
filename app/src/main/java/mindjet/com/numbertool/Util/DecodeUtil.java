@@ -46,7 +46,7 @@ public class DecodeUtil {
 
             if (resultcode.equals("200")) {
 
-                SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd hh:mm");
+                SimpleDateFormat format = new SimpleDateFormat("yy/MM/dd HH:mm");
                 Date date = new Date(System.currentTimeMillis());
                 String mDate = format.format(date);
 

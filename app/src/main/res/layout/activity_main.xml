@@ -1,65 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white"
-    android:orientation="vertical">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
     <include layout="@layout/widget_head"/>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
-
-        <mindjet.com.numbertool.View.ClearEditText
-            android:id="@+id/et_input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/detail_block_padding"
-            android:layout_marginRight="@dimen/detail_block_padding"
-            android:layout_marginTop="30dp"
-            android:background="@drawable/shape_round_rectangle"
-            android:drawableEnd="@mipmap/cross"
-            android:drawableRight="@mipmap/cross"
-            android:focusable="true"
-            android:hint="@string/hint"
-            android:inputType="phone"
-            android:maxLength="11"
-            android:textColor="@color/colorPrimary"
-            android:textSize="@dimen/normal_textSize"/>
-
-        <Button
-            android:id="@+id/btn_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="@drawable/selector_background_button"
-            android:focusable="true"
-            android:text="@string/search"
-            android:textColor="@drawable/selector_textcolor_button"
-            android:textSize="@dimen/large_textSize"/>
-
-    </LinearLayout>
-
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ellipse_padding_large"
-        android:padding="@dimen/ellipse_padding_xsmall"
-        android:text="@string/history"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/large_textSize"/>
-
-    <ListView
-        android:id="@+id/lv_history"
-        android:layout_width="match_parent"
-        android:descendantFocusability="blocksDescendants"
-        android:layout_height="wrap_content"
-        android:divider="@color/white">
-    </ListView>
-
+    <include layout="@layout/widget_layout_drawer"/>
 
 </LinearLayout>

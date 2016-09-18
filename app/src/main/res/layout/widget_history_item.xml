@@ -51,7 +51,10 @@
             android:layout_centerVertical="true"
             android:focusable="false"
             android:clickable="true"
+            android:paddingLeft="@dimen/ellipse_padding_large"
+            android:paddingRight="@dimen/ellipse_padding_xsmall"
             android:src="@mipmap/delete"/>
+
 
 
     </RelativeLayout>

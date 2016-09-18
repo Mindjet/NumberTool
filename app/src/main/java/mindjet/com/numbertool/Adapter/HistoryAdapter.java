@@ -93,7 +93,7 @@ public class HistoryAdapter extends BaseAdapter {
 
     public void delInfoItem(InfoItem infoItem) {
 
-        System.out.println(infoItemList.remove(infoItem));
+        infoItemList.remove(infoItem);
         notifyDataSetChanged();
 
     }

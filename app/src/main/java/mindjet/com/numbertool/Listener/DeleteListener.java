@@ -32,9 +32,6 @@ public class DeleteListener implements View.OnClickListener {
 
         InfoItem infoItem = dao.search(pNum);
         if (infoItem != null) {
-
-            System.out.println(infoItem);
-
             dao.delete(pNum);
             adapter.delInfoItem(infoItem);
         }

@@ -12,7 +12,7 @@ import java.net.URL;
  */
 public class HttpUtil {
 
-    public static String fetchInBackgound(String myUrl) {
+    public static String fetchInBackground(String myUrl) {
 
         HttpURLConnection conn;
         StringBuilder builder = new StringBuilder("");

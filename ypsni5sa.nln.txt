@@ -1,0 +1,22 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#	modified:   HistoryAdapter.java
+#	new file:   SlideMenuAdapter.java
+#	modified:   ../Biz/InfoItemBiz.java
+#	modified:   ../Listener/DeleteListener.java
+#	modified:   ../MainActivity.java
+#	modified:   ../Util/DecodeUtil.java
+#	modified:   ../Util/HttpUtil.java
+#	modified:   ../../../../../res/layout/activity_main.xml
+#	modified:   ../../../../../res/layout/widget_head.xml
+#	modified:   ../../../../../res/layout/widget_history_item.xml
+#	renamed:    ../../../../../res/layout/activity_main.xml -> ../../../../../res/layout/widget_layout_content.xml
+#	new file:   ../../../../../res/layout/widget_layout_drawer.xml
+#	new file:   ../../../../../res/layout/widget_slidemenu_item.xml
+#
+

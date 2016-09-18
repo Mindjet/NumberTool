@@ -19,12 +19,10 @@ public class InfoItemBiz {
     private Handler handler;
     private String pNum = null;
     private InfoItemDao dao;
-    private HistoryAdapter adapter;
 
-    public InfoItemBiz(Context context, String tableName, Handler handler, HistoryAdapter adapter) {
+    public InfoItemBiz(Context context, String tableName, Handler handler) {
 
         this.handler = handler;
-        this.adapter = adapter;
         dao = new InfoItemDao(context, tableName);
 
     }
@@ -57,7 +55,7 @@ public class InfoItemBiz {
 
         } else {                             //the number does not exist in the database.
 
-            String result = HttpUtil.fetchInBackgound(myUrl);
+            String result = HttpUtil.fetchInBackground(myUrl);
             infoItem = DecodeUtil.Json2InfoItem(result, pNum);
             fromDB = 0;
 

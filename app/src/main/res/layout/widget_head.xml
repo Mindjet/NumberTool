@@ -1,29 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:orientation="vertical"
               android:layout_height="wrap_content">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@color/colorPrimary"
-        android:gravity="center">
+        android:layout_height="60dp"
+        android:padding="@dimen/ellipse_padding_small"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/iv_toggle_drawer"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/delete"
+            android:paddingRight="@dimen/ellipse_padding_large"
+            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:text="@string/head_title"
             android:textColor="@color/white"
-            android:textSize="25sp"
+            android:textSize="@dimen/large_textSize"
             android:textStyle="bold"/>
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:background="#45566c73"
-        android:layout_height="2dp">
-    </LinearLayout>
-
-</LinearLayout>
+</merge>

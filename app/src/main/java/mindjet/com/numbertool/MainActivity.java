@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.Window;
@@ -14,9 +15,11 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import mindjet.com.numbertool.Adapter.HistoryAdapter;
+import mindjet.com.numbertool.Adapter.SlideMenuAdapter;
 import mindjet.com.numbertool.Bean.InfoItem;
 import mindjet.com.numbertool.Biz.Constants;
 import mindjet.com.numbertool.Biz.InfoItemBiz;
@@ -37,11 +40,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private InfoItemDao infoItemDao;
     private MyHandler handler;
     private static HistoryAdapter historyAdapter;
+    private SlideMenuAdapter slideMenuAdapter;
 
+    private DrawerLayout drawerLayout;
     private ClearEditText et_input;
     private Button btn_search;
-    private ListView lv_history;
+    private ImageView iv_toggle_drawer;
+    private ListView lv_slidemenu, lv_history;
     private static InfoItemDialog dialog;
+
+    private boolean isDrawerOpen = false;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -53,9 +61,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         handler = new MyHandler();
 
+        slideMenuAdapter = new SlideMenuAdapter(this);
+
         infoItemDao = new InfoItemDao(this, Constants.TABLE_NAME);
         historyAdapter = new HistoryAdapter(this, infoItemDao);
-        infoItemBiz = new InfoItemBiz(this, Constants.TABLE_NAME, handler, historyAdapter);
+        infoItemBiz = new InfoItemBiz(this, Constants.TABLE_NAME, handler);
 
         inputMethodManager = (InputMethodManager) this.getSystemService(Context.INPUT_METHOD_SERVICE);
         fragmentManager = getFragmentManager();
@@ -66,16 +76,22 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void initUI() {
 
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        lv_slidemenu = (ListView) findViewById(R.id.lv_sildemenu);
+        iv_toggle_drawer = (ImageView) findViewById(R.id.iv_toggle_drawer);
         et_input = (ClearEditText) findViewById(R.id.et_input);
         btn_search = (Button) findViewById(R.id.btn_search);
         lv_history = (ListView) findViewById(R.id.lv_history);
         dialog = new InfoItemDialog();
 
+        iv_toggle_drawer.setOnClickListener(this);
         btn_search.setOnClickListener(this);
 
         lv_history.setAdapter(historyAdapter);
         lv_history.setOnItemClickListener(this);
         historyAdapter.addFromDB(); //initialize the data for adapter.
+
+        lv_slidemenu.setAdapter(slideMenuAdapter);
 
     }
 
@@ -100,8 +116,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 event_btn_search(et_input.getText().toString());
                 break;
 
+            case R.id.iv_toggle_drawer:
+                event_iv_toggle_drawer();
+                break;
+
         }
 
+    }
+
+    private void event_iv_toggle_drawer() {
+
+        if (!isDrawerOpen) {
+            drawerLayout.openDrawer(lv_slidemenu);
+            isDrawerOpen = true;
+        } else {
+            drawerLayout.closeDrawer(lv_slidemenu);
+            isDrawerOpen = false;
+        }
     }
 
     //triggered when the search button is clicked
