@@ -28,7 +28,7 @@ import mindjet.com.numbertool.Util.ToastUtil;
 import mindjet.com.numbertool.View.ClearEditText;
 import mindjet.com.numbertool.View.InfoItemDialog;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private InputMethodManager inputMethodManager;
     private FragmentManager fragmentManager;
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
 
-        dialog.show(fragmentManager,"SHOW_DIALOG_HISTORY");
+        dialog.show(fragmentManager, "SHOW_DIALOG_HISTORY");
         InfoItem infoItem = historyAdapter.getInfoItemList().get(position);
 
         //updating the text must be executed in main thread
@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             dialog.updateTextViews((InfoItem) msg.obj);
 
             //If the data is not from database, it's supposed to be added to the listview.
-            if (msg.what==0) {
+            if (msg.what == 0) {
                 historyAdapter.addInfoItem((InfoItem) msg.obj);
             }
 

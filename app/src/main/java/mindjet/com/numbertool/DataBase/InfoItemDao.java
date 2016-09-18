@@ -139,21 +139,4 @@ public class InfoItemDao {
 
     }
 
-    public int getIndex(String pNum){
-
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        String sql_index = "select * from "+tableName+" where number=?";
-        String[] strings = new String[]{pNum};
-
-        Cursor cursor = db.rawQuery(sql_index, strings);
-        cursor.moveToNext();
-
-        int index = cursor.getInt(cursor.getColumnIndex("_id"));
-        cursor.close();
-        db.close();
-
-        return index;
-
-    }
-
 }

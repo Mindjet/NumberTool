@@ -13,6 +13,7 @@ import java.util.List;
 
 import mindjet.com.numbertool.Bean.InfoItem;
 import mindjet.com.numbertool.DataBase.InfoItemDao;
+import mindjet.com.numbertool.Listener.DeleteListener;
 import mindjet.com.numbertool.R;
 
 /**
@@ -60,7 +61,6 @@ public class HistoryAdapter extends BaseAdapter {
             holder.number = (TextView) view.findViewById(R.id.tv_history_item_number);
             holder.date = (TextView) view.findViewById(R.id.tv_history_item_time);
             holder.delete = (ImageView) view.findViewById(R.id.iv_history_item_delete);
-//            holder.listener = new DeleteListener(this, infoItemList.get(i).getNumber(), infoItemDao);
 
             view.setTag(holder);
 
@@ -72,7 +72,7 @@ public class HistoryAdapter extends BaseAdapter {
 
         holder.number.setText(infoItemList.get(i).getNumber());
         holder.date.setText(infoItemList.get(i).getDate());
-//        holder.delete.setOnClickListener(holder.listener);
+        holder.delete.setOnClickListener(new DeleteListener(this, infoItemList.get(i).getNumber(), infoItemDao));
 
         return view;
     }
@@ -98,7 +98,7 @@ public class HistoryAdapter extends BaseAdapter {
 
     }
 
-    public List<InfoItem> getInfoItemList(){
+    public List<InfoItem> getInfoItemList() {
         return this.infoItemList;
     }
 
@@ -108,7 +108,6 @@ public class HistoryAdapter extends BaseAdapter {
         public TextView number;
         public TextView date;
         public ImageView delete;
-//        public DeleteListener listener;
 
     }
 

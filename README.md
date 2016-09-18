@@ -1,28 +1,28 @@
 # NumberTool
 This project implements a tool to get the information of your cellphone number.
 
-####  Introduction
+###  Introduction
 
-By offering cellphone numbers, users can get the infomation of their number, which includes Province, City, Areacode, Zip, Company and Card-type.
+By offering cellphone numbers, users can get the information of their number, which includes Province, City, Areacode, Zip, Company and Card-type.
 
-For example, if you search 18888888888, you can get infomation like this:
+For example, if you search 18888888888, you can get information like this:
 * Province: Beijing
 * City: Beijing
 * Areacode: 010
 * Zip: 100000
-* Company: China Moblie
-* Card-type: China Moblie GSM/3G
+* Company: China Mobile
+* Card-type: China Mobile GSM/3G
 
-Besides, this app allows users to get infomation of number offline using local storage.
+Besides, this app allows users to get information of number offline using local storage.
 
-#### Structure
+### Structure
 
 1. ListView: display search-history.
-2. DialogFragment: display infomation of number.
-2. Sqlite: store search-history.
+2. DialogFragment: display information of number.
+3. Sqlite: store search-history.
 
 
-#### Screenshots
+### Screenshots
 
 coming soon.
 
