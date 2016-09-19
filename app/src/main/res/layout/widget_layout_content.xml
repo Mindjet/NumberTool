@@ -20,8 +20,8 @@
             android:layout_marginRight="@dimen/detail_block_padding"
             android:layout_marginTop="30dp"
             android:background="@drawable/shape_round_rectangle"
-            android:drawableEnd="@mipmap/cross"
-            android:drawableRight="@mipmap/cross"
+            android:drawableEnd="@mipmap/content_icon_cross"
+            android:drawableRight="@mipmap/content_icon_cross"
             android:focusable="true"
             android:hint="@string/hint"
             android:inputType="phone"
@@ -49,8 +49,8 @@
         android:padding="@dimen/ellipse_padding_xsmall"
         android:drawablePadding="@dimen/ellipse_padding_xsmall"
         android:text="@string/history"
-        android:drawableLeft="@mipmap/history"
-        android:drawableStart="@mipmap/history"
+        android:drawableLeft="@mipmap/content_icon_history"
+        android:drawableStart="@mipmap/content_icon_history"
         android:textColor="@color/colorPrimary"
         android:textSize="@dimen/large_textSize"/>
 

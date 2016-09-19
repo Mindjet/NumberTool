@@ -3,6 +3,7 @@ package mindjet.com.numbertool;
 import android.annotation.TargetApi;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -214,6 +215,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 case 1:
                     //show version information
+                    Intent intent = new Intent(this,VersionActivity.class);
+                    startActivity(intent);
                     break;
 
                 case 2:

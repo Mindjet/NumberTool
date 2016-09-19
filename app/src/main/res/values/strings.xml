@@ -13,5 +13,9 @@
     <string name="detail_loading">正在获取</string>
     <string name="text4test">shishishis</string>
     <string name="history">查 询 历 史</string>
+    <string name="back2main">主界面</string>
+    <string name="app_name_cn">号码信息助手</string>
+    <string name="version_code">v1.1</string>
+    <string name="image_text">图标丢失</string>
 
 </resources>

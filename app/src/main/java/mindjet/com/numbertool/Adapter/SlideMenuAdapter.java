@@ -17,7 +17,7 @@ import mindjet.com.numbertool.R;
 public class SlideMenuAdapter extends BaseAdapter {
 
     private String[] text_data = {"清空数据库", "版本信息", "关于我"};
-    private int[] image_data = {R.mipmap.clear, R.mipmap.version, R.mipmap.about};
+    private int[] image_data = {R.mipmap.slidemenu_icon_clear, R.mipmap.slidemenu_icon_version, R.mipmap.slidemenu_icon_aboutme};
 
     private LayoutInflater inflater;
 

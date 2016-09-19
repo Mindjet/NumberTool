@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#ececec"
+              android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/colorPrimary">
+
+
+        <TextView
+            android:id="@+id/tv_back2main"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:drawableLeft="@mipmap/versioninfo_icon_back"
+            android:drawablePadding="@dimen/ellipse_padding_small"
+            android:drawableStart="@mipmap/versioninfo_icon_back"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/ellipse_padding_small"
+            android:paddingRight="@dimen/ellipse_padding_small"
+            android:text="@string/back2main"
+            android:textColor="@color/white"
+            android:textSize="@dimen/large_textSize"
+            android:textStyle="bold"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="65dp"
+            android:contentDescription="@string/image_text"
+            android:src="@mipmap/versioninfo_icon_appicon"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@string/app_name_cn"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/middle_textSize"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:text="@string/version_code"
+            android:textColor="@color/gray"/>
+
+    </LinearLayout>
+
+    <ListView
+        android:background="@color/white"
+        android:layout_marginTop="@dimen/ellipse_padding_large"
+        android:id="@+id/lv_version_options"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </ListView>
+
+
+</LinearLayout>
