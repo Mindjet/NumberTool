@@ -42,17 +42,34 @@
 
     </LinearLayout>
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ellipse_padding_large"
-        android:padding="@dimen/ellipse_padding_xsmall"
-        android:drawablePadding="@dimen/ellipse_padding_xsmall"
-        android:text="@string/history"
-        android:drawableLeft="@mipmap/content_icon_history"
-        android:drawableStart="@mipmap/content_icon_history"
-        android:textColor="@color/colorPrimary"
-        android:textSize="@dimen/large_textSize"/>
+        android:paddingLeft="@dimen/ellipse_padding_small"
+        android:paddingRight="@dimen/ellipse_padding_small">
+
+        <ImageView
+            android:id="@+id/iv_history"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:contentDescription="@string/image_text"
+            android:src="@mipmap/content_icon_history"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="@dimen/ellipse_padding_large"
+            android:layout_toEndOf="@+id/iv_history"
+            android:layout_toRightOf="@+id/iv_history"
+            android:padding="@dimen/ellipse_padding_xsmall"
+            android:text="@string/history"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/large_textSize"/>
+
+    </RelativeLayout>
+
 
     <ListView
         android:id="@+id/lv_history"

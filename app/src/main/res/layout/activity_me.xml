@@ -5,8 +5,9 @@
               android:background="@color/light_grey_bg"
               android:orientation="vertical">
 
+
     <TextView
-        android:id="@+id/tv_version_back2main"
+        android:id="@+id/tv_me_back2main"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@color/colorPrimary"
@@ -21,44 +22,34 @@
         android:textSize="@dimen/large_textSize"
         android:textStyle="bold"/>
 
-    <LinearLayout
+
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_marginTop="@dimen/ellipse_padding_small"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/me_icon_github"
+        android:drawablePadding="@dimen/ellipse_padding_small"
+        android:drawableStart="@mipmap/me_icon_github"
+        android:gravity="center_vertical"
+        android:padding="@dimen/ellipse_padding_small"
+        android:text="@string/github_address"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/normal_textSize"/>
 
-        <ImageView
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:contentDescription="@string/image_text"
-            android:src="@mipmap/versioninfo_icon_appicon"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="@string/app_name_cn"
-            android:textColor="@color/gray"
-            android:textSize="@dimen/middle_textSize"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingTop="5dp"
-            android:text="@string/version_code"
-            android:textColor="@color/gray"/>
-
-    </LinearLayout>
-
-    <ListView
-        android:id="@+id/lv_version_options"
+    <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/ellipse_padding_large"
-        android:background="@color/white">
-
-    </ListView>
+        android:layout_marginTop="@dimen/ellipse_padding_small"
+        android:background="@color/white"
+        android:drawableLeft="@mipmap/me_icon_email"
+        android:drawablePadding="@dimen/ellipse_padding_small"
+        android:drawableStart="@mipmap/me_icon_email"
+        android:gravity="center_vertical"
+        android:padding="@dimen/ellipse_padding_small"
+        android:text="@string/email_address"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/normal_textSize"/>
 
 
 </LinearLayout>

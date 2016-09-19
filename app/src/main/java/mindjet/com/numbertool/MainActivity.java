@@ -200,6 +200,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         } else if (lv_id == R.id.lv_slidemenu) {
 
+            Intent intent;
+
             switch (position) {
 
                 case 0:
@@ -211,16 +213,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     message.what = Constants.MSG_CLEAR_DB;
                     handler.sendMessage(message);
 
+                    //clean up the edittext
+                    et_input.setText("");
+
                     break;
 
                 case 1:
                     //show version information
-                    Intent intent = new Intent(this,VersionActivity.class);
+                    intent = new Intent(this, VersionActivity.class);
                     startActivity(intent);
                     break;
 
                 case 2:
                     //show information about me
+                    intent = new Intent(this,MeActivity.class);
+                    startActivity(intent);
                     break;
 
             }
@@ -245,7 +252,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     historyAdapter.addInfoItem((InfoItem) msg.obj);
                 }
 
-            // if the message is about clearing the database
+                // if the message is about clearing the database
             } else if (msg.what == Constants.MSG_CLEAR_DB) {
 
                 historyAdapter.delInfoItemList();
