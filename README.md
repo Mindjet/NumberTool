@@ -24,12 +24,30 @@ Besides, this app allows users to get information of number offline using local 
 
 ### Screenshots
 
-coming soon.
+*Home*
+</br>
+<img src="screenshots/home.png"  width="280">
 
+*SlideMenu*
+</br>
+<img src="screenshots/slidemenu.png" width="250">
 
-#### More
+*Detail*
+</br>
+<img src="screenshots/detail.png" width="250">
 
-This application is now on its 1.0 version.
+*Version*
+</br>
+<img src="screenshots/version.png" width="250">
+
+*About*
+</br>
+<img src="screenshots/aboutme.png" width="250">
+
+### More
+
+This application is now on its 2.0 version.
+</br>
 Welcome to download it on  http://app.mi.com/.
 
 
