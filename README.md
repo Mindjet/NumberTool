@@ -26,23 +26,23 @@ Besides, this app allows users to get information of number offline using local 
 
 *Home*
 </br>
-<img src="screenshots/home.png"  width="280">
+<img src="screenshots/home_with_frame.png"  width="280">
 
 *SlideMenu*
 </br>
-<img src="screenshots/slidemenu.png" width="250">
+<img src="screenshots/slidemenu_with_frame.png" width="250">
 
 *Detail*
 </br>
-<img src="screenshots/detail.png" width="250">
+<img src="screenshots/detail_with_frame.png" width="250">
 
 *Version*
 </br>
-<img src="screenshots/version.png" width="250">
+<img src="screenshots/version_with_frame.png" width="250">
 
 *About*
 </br>
-<img src="screenshots/aboutme.png" width="250">
+<img src="screenshots/aboutme_with_frame.png" width="250">
 
 ### More
 
