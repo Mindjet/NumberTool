@@ -27,6 +27,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/ellipse_padding_small"
+        android:id="@+id/tv_me_github"
         android:background="@color/white"
         android:drawableLeft="@mipmap/me_icon_github"
         android:drawablePadding="@dimen/ellipse_padding_small"
