@@ -44,11 +44,9 @@ Besides, this app allows users to get information of number offline using local 
 </br>
 <img src="screenshots/aboutme_with_frame.png" width="250">
 
-### More
 
-This application is now on its 2.0 version.
-</br>
-Welcome to download it on  http://app.mi.com/.
+
+
 
 
 
